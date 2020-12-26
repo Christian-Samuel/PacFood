@@ -37,10 +37,11 @@
             this.vidaLabel = new System.Windows.Forms.Label();
             this.pontoLabel = new System.Windows.Forms.Label();
             this.Jogador = new System.Windows.Forms.Label();
-            this.comida = new System.Windows.Forms.Label();
+            this.personagem2 = new System.Windows.Forms.Label();
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.frcTxt = new System.Windows.Forms.Label();
             this.status = new System.Windows.Forms.Panel();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.status.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -85,9 +86,8 @@
             this.vidaLabel.AutoSize = true;
             this.vidaLabel.Location = new System.Drawing.Point(127, 0);
             this.vidaLabel.Name = "vidaLabel";
-            this.vidaLabel.Size = new System.Drawing.Size(50, 20);
+            this.vidaLabel.Size = new System.Drawing.Size(0, 20);
             this.vidaLabel.TabIndex = 7;
-            this.vidaLabel.Text = "Vida:";
             // 
             // pontoLabel
             // 
@@ -101,18 +101,23 @@
             // Jogador
             // 
             this.Jogador.BackColor = System.Drawing.Color.Coral;
-            this.Jogador.Location = new System.Drawing.Point(13, 261);
+            this.Jogador.Location = new System.Drawing.Point(44, 22);
             this.Jogador.Name = "Jogador";
             this.Jogador.Size = new System.Drawing.Size(25, 25);
             this.Jogador.TabIndex = 6;
+            this.Jogador.Tag = "celula";
+            this.Jogador.Text = "M";
             // 
-            // comida
+            // personagem2
             // 
-            this.comida.BackColor = System.Drawing.Color.Red;
-            this.comida.Location = new System.Drawing.Point(523, 56);
-            this.comida.Name = "comida";
-            this.comida.Size = new System.Drawing.Size(40, 40);
-            this.comida.TabIndex = 19;
+            this.personagem2.BackColor = System.Drawing.Color.Red;
+            this.personagem2.Location = new System.Drawing.Point(629, 256);
+            this.personagem2.Name = "personagem2";
+            this.personagem2.Size = new System.Drawing.Size(25, 25);
+            this.personagem2.TabIndex = 19;
+            this.personagem2.Tag = "celula";
+            this.personagem2.Text = "F";
+            this.personagem2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // imageList1
             // 
@@ -140,13 +145,19 @@
             this.status.Size = new System.Drawing.Size(350, 23);
             this.status.TabIndex = 20;
             // 
+            // timer1
+            // 
+            this.timer1.Enabled = true;
+            this.timer1.Interval = 5000;
+            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1059, 512);
             this.Controls.Add(this.status);
-            this.Controls.Add(this.comida);
+            this.Controls.Add(this.personagem2);
             this.Controls.Add(this.Jogador);
             this.Controls.Add(this.parede4);
             this.Controls.Add(this.parede2);
@@ -171,10 +182,11 @@
         private System.Windows.Forms.Label vidaLabel;
         private System.Windows.Forms.Label pontoLabel;
         private System.Windows.Forms.Label Jogador;
-        private System.Windows.Forms.Label comida;
+        private System.Windows.Forms.Label personagem2;
         private System.Windows.Forms.ImageList imageList1;
         private System.Windows.Forms.Label frcTxt;
         private System.Windows.Forms.Panel status;
+        private System.Windows.Forms.Timer timer1;
     }
 }
 

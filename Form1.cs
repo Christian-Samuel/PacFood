@@ -8,32 +8,32 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
+/*Cada objeto que se move e se colide precisa ter uma lista de objetos fisicos que faz referencia a propio*/
+
 namespace PacFood
 {
     public partial class Form1 : Form
     {
         public Label[,] Blocos = new Label[20, 9];//Todos os blocos gerados no Controle
-        public Label[] BlocosPInimigos = new Label[180];//Todos os blocos gerados menos os inimigos
+        
+        Estrutura[] Objetos = new Estrutura[100];//Vetor que armazena uma lista de objetos que colide com o persongem principal
+        Estrutura celulas = new Estrutura();
+        Estrutura comidas = new Estrutura();
 
-        public fisica[][] ObjetosInimigos = new fisica[30][];//Matriz com 2 dimensões, cada dimensão guarda uma lista de objetos que colidem com os inimigos
-        
-        public fisica[] BlocosFis = new fisica[180];
-        public fisica[] Objetos = new fisica[180];//Vetor que armazena uma lista de objetos que colide com o persongem principal
+        fisica[] celulasFisica = new fisica[100];
         public fisica Personagem;//Instacia o Personagem principal
-        
+        public fisica Personage2;
+
         public Player PersonagemP;//Controle do Personagem Principal
 
-        public int[] QntInimigos = new int[30];//A posicao de cada inimigo em relação ao BlocosFis[]
-        int y = 0;
-        
-
-
+        int x = 2;
         public Form1()
         {
             InitializeComponent();
-            int z = 0;
-            int x = 0;
-            
+   
+
+            Objetos[0] = new Estrutura();
+            Objetos[1] = new Estrutura();
             Blocos = Controle.instaciarCenario();
 
             for (int a = 0; a < 20; a++)
@@ -41,112 +41,128 @@ namespace PacFood
                 for (int b = 0; b < 9; b++)
                 {
                     //Adicionando a parte fisica no bloco gerado
-                    BlocosFis[x] = new fisica(Blocos[a, b], Jogador, 2);
-
-                    //Manda para o vetor que salva os blocos que colidem
-                    Objetos[x] = BlocosFis[x];
-
-                    //Grava a posição em que o Inimigo esta salvo no BlocosFix
-                    if (Blocos[a, b].BackColor == Color.Yellow)
-                    {
-                        QntInimigos[z] = x;
-                        z++;
-                    }
-                    /*else
-                    {
-                        BlocosPInimigos[y] = Blocos[a, b];//Armazena os blocos que colidirão com os inimigos
-                        y++;
-                    }*/
-
-                    BlocosPInimigos[y] = Blocos[a, b];//Armazena os blocos que colidirão com os inimigos
-                    y++;
-
-                    x++;
-                    this.Controls.Add(Blocos[a, b]);
+                    Objetos[0].add(Blocos[a, b]);
+                    Objetos[1].add(Blocos[a, b]);
+                    Controls.Add(Blocos[a, b]);
                 }
             }
-            z = 0;
-            x = 0;
+        
+            celulas.add(personagem2);
+            celulas.add(Jogador);
+            Objetos[0].add(personagem2);
+            Objetos[1].add(Jogador);
 
             fisica Parede1 = new fisica(parede1, Jogador, 1);
             fisica Parede2 = new fisica(parede2, Jogador, 1);
             fisica Parede3 = new fisica(parede3, Jogador, 1);
             fisica Parede4 = new fisica(parede4, Jogador, 1);
 
-            fisica food = new fisica(comida, Jogador, 3);
-            Objetos[0] = food;
-            Personagem = new fisica(Jogador);
+            Personagem = new fisica(Jogador,personagem2,1);
+            Personage2 = new fisica(personagem2,Jogador,1);
+
+            celulasFisica[0] = Personagem;
+            celulasFisica[1] = Personage2;
+
             PersonagemP = new Player(Jogador, pontoLabel, vidaLabel, frcTxt);
-            Personagem.colidir(Objetos);
+
+            Personagem.colidir(Objetos[0].getDados());
+            Personage2.colidir(Objetos[1].getDados());
 
         }
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            int x = 0;
-            int z = 0;
-            //Ele recebe o script de fisica do inimigo para poder acessar o .colisão()
-            Inimigo[] Inimigos = new Inimigo[Controle.InimigosNumero];//Script que controla os inimigos
-            
-            for (int a = 0; a < 20; a++)
-            {
-                for (int b = 0; b < 9; b++)
-                {
-                    if (Blocos[a, b].BackColor == Color.Yellow)//Todos os inimigos
-                    {
-                        Inimigos[x] = new Inimigo(Blocos[a, b], BlocosFis[QntInimigos[x]],this);//Cria um novo script para controlar o inimigo 
-
-                        ObjetosInimigos[z] = new fisica[180];//Inicializa a matriz
-
-                        /*
-                        for (int c = 0; c < Objetos.Length - Controle.InimigosNumero; c++)//Percorre todos os objetos que podem colidir com o inimigo
-                        {
-                            ObjetosInimigos[z][c] = new fisica(BlocosPInimigos[c], Blocos[a, b], 1);//Cria um objeto de fisica para esse bloco e armazena na matriz
-                        }*/
-
-                       for (int c = 0; c < BlocosPInimigos.Length; c++)//Percorre todos os objetos que podem colidir com o inimigo
-                       {
-                            if (BlocosPInimigos[c].Tag != Blocos[a,b].Tag)
-                            {
-                                ObjetosInimigos[z][c] = new fisica(BlocosPInimigos[c], Blocos[a, b], 1);//Cria um objeto de fisica para esse bloco e armazena na matriz
-                            }
-                            else
-                            {
-                                ObjetosInimigos[z][c] = new fisica(parede4, parede2, 1);//Cria um objeto de fisica para esse bloco e armazena na matriz
-                            }
-                       }
-
-
-                        BlocosFis[QntInimigos[x]].colidir(ObjetosInimigos[z]);//O Inimigo recebe a lista de script dos blocos com colisão
-                        x++;
-                        z++;
-                    }
-                }
-            }
-
-            for (int a = 0; a < Inimigos.Length; a++)
-            {
-                Inimigos[a].movimento();
-            }
-            Player.atualizar();
+            Inimigo atores = new Inimigo(personagem2, Personage2, this);
+            atores.movimento();
         }
 
         private void Form1_KeyDown(object sender, KeyEventArgs e)
         {
-                Personagem.mover(e.KeyValue);
-                Jogador.Text = e.KeyValue.ToString();
+            Personagem.mover(e.KeyValue);
         }
 
-        public void ovo(Control pai)
+        public void atualizar(Control comidinha)
         {
-            Label peca = new Label();
-            peca.Text = "";
-            peca.Tag = Controle.idName;
-            peca.Size = new System.Drawing.Size(15, 15);
-            peca.BorderStyle = BorderStyle.FixedSingle;
-            peca.BackColor = Color.Green;
-            peca.Location = pai.Location;
-            this.Controls.Add(peca);
+            for (int z = 0; z < x; z++)
+            {
+                if (Objetos[z] != null)
+                {
+                    Objetos[z].add(comidinha);
+                    celulasFisica[z].colidir(Objetos[z].getDados());
+                }
+            }
+        }
+
+        public void novaCelula(int eX, int eY)
+        {
+            Random random = new Random();
+            Label newCell = new Label();
+
+            newCell = Controle.gerarCelula();
+            newCell.Location = new Point(eX-26, eY-26);
+            fisica newCellFisica = new fisica(newCell);
+            celulasFisica[x] = newCellFisica;
+            Objetos[x] = new Estrutura();
+
+            for (int a = 0; a < 20; a++)
+            {
+                for (int b = 0; b < 9; b++)
+                {
+                    Objetos[x].add(Blocos[a, b]);
+                }
+            }
+
+            for(int z=0; z<celulas.posicao; z++)
+            {
+                Objetos[x].add(celulas.getDado(z));
+            }
+
+            for(int z=0; z<comidas.posicao; z++)
+            {
+                Objetos[x].add(comidas.getDado(z));
+            }
+
+            celulas.add(newCell);
+
+            celulasFisica[x].colidir(Objetos[x].getDados());
+            Controls.Add(newCell);
+            Inimigo cellPerson = new Inimigo(newCell, newCellFisica, this);
+            cellPerson.movimento();
+            for(int y=0;y<x;y++)
+            {
+                if (Objetos[y] != null)
+                {
+                    Objetos[y].add(newCell);
+
+                    celulasFisica[y].colidir(Objetos[y].getDados());
+                }
+            }
+            while (celulasFisica[x].Colisao() == 1)
+            {
+                newCell.Location = new Point(random.Next(30, 1000), random.Next(30, 480));
+            }
+            x++;
+        }
+
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            Random random = new Random();
+            Label comida = new Label();
+
+            comida = Controle.gerarComida();
+            comida.Location = new Point(random.Next(30, 1000), random.Next(30, 480));
+            fisica comidaFisica = new fisica(comida);
+            this.Controls.Add(comida);
+            comidaFisica.colidir(Objetos[1].getDados());
+            comidas.add(comida);
+            while(comidaFisica.Colisao()==1)
+            {
+                comida.Location = new Point(random.Next(30, 1000), random.Next(30, 480));
+            }
+            comidaFisica.colidir(celulas.getDados());
+
+            atualizar(comida);
         }
     }
 }

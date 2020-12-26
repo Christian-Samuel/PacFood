@@ -30,7 +30,7 @@ namespace PacFood
             Label peca = new Label();
             peca.Name = txtName + idName.ToString();
             peca.Text = "";
-            peca.Tag = idName;
+            peca.Tag = "cenario";
             peca.Size = new System.Drawing.Size(40, 40);
             peca.BorderStyle = BorderStyle.FixedSingle;
             peca.BackColor = Color.Peru;
@@ -39,6 +39,43 @@ namespace PacFood
             return peca;
         }
 
+        public static Label gerarComida()
+        {
+            Label peca = new Label();
+            peca.Name = txtName + idName.ToString();
+            peca.Text = "";
+            peca.Tag = "comida";
+            peca.Size = new System.Drawing.Size(15, 15);
+            peca.BorderStyle = BorderStyle.FixedSingle;
+            peca.BackColor = Color.LightGreen;
+
+            idName++;
+            return peca;
+        }
+
+        public static Label gerarCelula()
+        {
+            Random random = new Random(DateTime.Now.Millisecond);
+            Label peca = new Label();
+            peca.Name = txtName + idName.ToString();
+            if (random.Next(1, 3) == 1)
+            {
+                peca.Text = "F";
+            }
+            else
+            {
+                peca.Text = "M";
+            }
+            peca.TextAlign = ContentAlignment.MiddleCenter;
+            peca.Tag = "celula";
+            peca.Size = new System.Drawing.Size(25, 25);
+            peca.BorderStyle = BorderStyle.FixedSingle;
+            peca.BackColor = Color.Orange;
+
+            idName++;
+            return peca;
+
+        }
 
         //Cria uma matriz com os blocos gerados
         public static Label[,] instaciarCenario()
@@ -52,21 +89,12 @@ namespace PacFood
                     blocos[a, b] = gerar();
                     blocos[a, b].Location = new System.Drawing.Point(z+40, y+30);
                     
-                    if (random.Next(1, 4) != 1)//Gera um cenario com espaços em branco
+                    if (random.Next(1, 7) != 1)//Gera um cenario com espaços em branco
                     {
                         blocos[a, b].Visible = false;
                         blocos[a, b].Enabled = false;
                         blocos[a, b].Location = new System.Drawing.Point(0, 0);
                         blocos[a, b].Size = new Size(0, 0);
-                    }
-                    else
-                    {
-                        if(random.Next(1,8)==5)//1 a cada 10 blocos serão inimigos
-                        {
-                            blocos[a, b].BackColor = Color.Yellow;
-                            blocos[a, b].Size = new Size(30, 30);
-                            InimigosNumero++;
-                        }
                     }
                     y += 50;
                 }

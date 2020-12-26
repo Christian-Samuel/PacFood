@@ -27,7 +27,12 @@ namespace PacFood
             this.form = form;
         }
 
-        
+        public async void mudarCor()
+        {
+            await Task.Delay(5000);
+            enemy.BackColor = Color.Red;
+        }
+       
 
         public async void movimento()
         {
@@ -44,23 +49,19 @@ namespace PacFood
 
                     if (scriptInimigo.Colisao() == 1)
                     {
-                        Player.vida -= 5;
-                        Player.atualizar();
                         enemy.Location = new Point(enemy.Location.X - velociade, enemy.Location.Y);
-                        colidiu = true;
-                    }
-
-                    for (int a = 0; a < scriptInimigo.Objetos.Length - Controle.InimigosNumero; a++)
-                    {
-                        if (scriptInimigo.Objetos[a].Colisao() == 1)
+                        if (scriptInimigo.objeto2.Tag == "comida")
                         {
-                            enemy.Location = new Point(enemy.Location.X - velociade, enemy.Location.Y);
-                            if (scriptInimigo.Objetos[a].objeto1.BackColor == Color.Yellow)
-                                form.ovo(enemy);
-                            colidiu = true;
+                            scriptInimigo.objeto2.Location = new Point(0, 0);
+                            enemy.BackColor = Color.Red;
                         }
 
-                       
+                        if (scriptInimigo.objeto2.Tag == "celula" && enemy.BackColor==Color.Red && enemy.Text=="F" && scriptInimigo.objeto2.Text=="M")
+                        {
+                            form.novaCelula(enemy.Location.X, enemy.Location.Y);
+                            enemy.BackColor = Color.Orange;
+                        }
+                        colidiu = true;
                     }
 
                     if (enemy.Location.X < 30 || enemy.Location.X > 1007)
@@ -86,19 +87,19 @@ namespace PacFood
 
                     if (scriptInimigo.Colisao() == 1)
                     {   
-                        Player.vida -= 5;
-                        Player.atualizar();
                         enemy.Location = new Point(enemy.Location.X + velociade, enemy.Location.Y);
-                        colidiu = true;
-                    }
-
-                    for (int a = 0; a < scriptInimigo.Objetos.Length - Controle.InimigosNumero; a++)
-                    {
-                        if (scriptInimigo.Objetos[a].Colisao() == 1)
+                        if (scriptInimigo.objeto2.Tag == "comida")
                         {
-                            enemy.Location = new Point(enemy.Location.X + velociade, enemy.Location.Y);
-                            colidiu = true;
+                            enemy.BackColor = Color.Red;
+                            scriptInimigo.objeto2.Location = new Point(0, 0);
                         }
+
+                        if (scriptInimigo.objeto2.Tag == "celula" && enemy.BackColor == Color.Red && enemy.Text == "F" && scriptInimigo.objeto2.Text == "M")
+                        {
+                            form.novaCelula(enemy.Location.X, enemy.Location.Y);
+                            enemy.BackColor = Color.Orange;
+                        }
+                        colidiu = true;
                     }
 
                     if (enemy.Location.X < 30 || enemy.Location.X > 1007)
@@ -131,19 +132,18 @@ namespace PacFood
                     enemy.Location = new Point(enemy.Location.X, enemy.Location.Y + velociade);
                     if (scriptInimigo.Colisao() == 1)
                     {
-                        Player.vida -= 5;
-                        Player.atualizar();
                         enemy.Location = new Point(enemy.Location.X, enemy.Location.Y - velociade);
-                        colidiu = true;
-                    }
-
-                    for (int a = 0; a < scriptInimigo.Objetos.Length - Controle.InimigosNumero; a++)
-                    {
-                        if (scriptInimigo.Objetos[a].Colisao() == 1)
+                        if (scriptInimigo.objeto2.Tag == "comida")
                         {
-                            enemy.Location = new Point(enemy.Location.X, enemy.Location.Y - velociade);
-                            colidiu = true;
+                            enemy.BackColor = Color.Red;
+                            scriptInimigo.objeto2.Location = new Point(0, 0);
                         }
+                        if (scriptInimigo.objeto2.Tag == "celula" && enemy.BackColor == Color.Red && enemy.Text == "F" && scriptInimigo.objeto2.Text == "M")
+                        {
+                            form.novaCelula(enemy.Location.X, enemy.Location.Y);
+                            enemy.BackColor = Color.Orange;
+                        }
+                        colidiu = true;
                     }
 
                     if (enemy.Location.X < 30 || enemy.Location.X > 1007)
@@ -167,19 +167,18 @@ namespace PacFood
                     enemy.Location = new Point(enemy.Location.X , enemy.Location.Y - velociade);
                     if (scriptInimigo.Colisao() == 1)
                     {
-                        Player.vida -= 5;
-                        Player.atualizar();
                         enemy.Location = new Point(enemy.Location.X , enemy.Location.Y + velociade);
-                        colidiu = true;
-                    }
-
-                    for (int a = 0; a < scriptInimigo.Objetos.Length - Controle.InimigosNumero; a++)
-                    {
-                        if (scriptInimigo.Objetos[a].Colisao() == 1)
+                        if(scriptInimigo.objeto2.Tag == "comida")
                         {
-                            enemy.Location = new Point(enemy.Location.X , enemy.Location.Y + velociade);
-                            colidiu = true;
+                            enemy.BackColor = Color.Red;
+                            scriptInimigo.objeto2.Location = new Point(0, 0);
                         }
+                        if (scriptInimigo.objeto2.Tag == "celula" && enemy.BackColor == Color.Red && enemy.Text == "F" && scriptInimigo.objeto2.Text == "M")
+                        {
+                            form.novaCelula(enemy.Location.X, enemy.Location.Y);
+                            enemy.BackColor = Color.Orange;
+                        }
+                        colidiu = true;
                     }
 
                     if (enemy.Location.X < 30 || enemy.Location.X > 1007)

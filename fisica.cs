@@ -15,7 +15,7 @@ namespace PacFood
     {
         public Control objeto1;
         public Control objeto2;
-        public fisica[] Objetos;//Conjunto de Objetos que detctarão colisão
+        public Control[] Objetos;//Conjunto de Objetos que detctarão colisão
 
         int velocidade=2;
         int propriedade=1; //define se o obejto e fixo no cenario
@@ -52,7 +52,7 @@ namespace PacFood
         {
             this.velocidade = vel;
         }
-        public void colidir(fisica[] objetos)
+        public void colidir(Control[] objetos)
         {
            this.Objetos = objetos;
         }
@@ -60,67 +60,76 @@ namespace PacFood
         //Metodos para todos objetos
         public int Colisao()
         {
-           
-            Tamanhos Tamanho1, Tamanho2;
-            Eixos[] Eixos1 = new Eixos[4];
-            Eixos[] Eixos2 = new Eixos[4];
-            
-            Tamanho1.Largura = objeto1.Size.Width;
-            Tamanho1.Altura = objeto1.Size.Height;
-            Tamanho2.Largura = objeto2.Size.Width;
-            Tamanho2.Altura = objeto2.Size.Height;
+            for (int x = 0; x < Objetos.Length; x++)
+            {
+                objeto2 = Objetos[x];
 
-            Eixos1[A].EixoX = objeto1.Location.X;
-            Eixos1[A].EixoY = objeto1.Location.Y;
-            Eixos1[B].EixoX = objeto1.Location.X + Tamanho1.Largura;
-            Eixos1[B].EixoY = objeto1.Location.Y;
-            Eixos1[C].EixoX = objeto1.Location.X;
-            Eixos1[C].EixoY = objeto1.Location.Y + Tamanho1.Altura;
-            Eixos1[D].EixoX = objeto1.Location.X + Tamanho1.Largura;
-            Eixos1[D].EixoY = objeto1.Location.Y + Tamanho1.Altura;
+                Tamanhos Tamanho1, Tamanho2;
+                Eixos[] Eixos1 = new Eixos[4];
+                Eixos[] Eixos2 = new Eixos[4];
 
-            Eixos2[A].EixoX = objeto2.Location.X;
-            Eixos2[A].EixoY = objeto2.Location.Y;
-            Eixos2[B].EixoX = objeto2.Location.X + Tamanho2.Largura;
-            Eixos2[B].EixoY = objeto2.Location.Y;
-            Eixos2[C].EixoX = objeto2.Location.X;
-            Eixos2[C].EixoY = objeto2.Location.Y + Tamanho2.Altura;
-            Eixos2[D].EixoX = objeto2.Location.X + Tamanho2.Largura;
-            Eixos2[D].EixoY = objeto2.Location.Y + Tamanho2.Altura;
+                Tamanho1.Largura = objeto1.Size.Width;
+                Tamanho1.Altura = objeto1.Size.Height;
+                Tamanho2.Largura = objeto2.Size.Width;
+                Tamanho2.Altura = objeto2.Size.Height;
 
-            
-            //Colisão AC com BD//
-            if (Eixos2[A].EixoY >= Eixos1[B].EixoY && Eixos2[A].EixoY <= Eixos1[C].EixoY && Eixos2[A].EixoX >= Eixos1[A].EixoX && Eixos2[A].EixoX <= Eixos1[B].EixoX)
-            { return 1; }
+                Eixos1[A].EixoX = objeto1.Location.X;
+                Eixos1[A].EixoY = objeto1.Location.Y;
+                Eixos1[B].EixoX = objeto1.Location.X + Tamanho1.Largura;
+                Eixos1[B].EixoY = objeto1.Location.Y;
+                Eixos1[C].EixoX = objeto1.Location.X;
+                Eixos1[C].EixoY = objeto1.Location.Y + Tamanho1.Altura;
+                Eixos1[D].EixoX = objeto1.Location.X + Tamanho1.Largura;
+                Eixos1[D].EixoY = objeto1.Location.Y + Tamanho1.Altura;
 
-            if (Eixos2[A].EixoX >= Eixos1[C].EixoX && Eixos2[A].EixoX <= Eixos1[D].EixoX && Eixos2[A].EixoY >= Eixos1[A].EixoY && Eixos2[A].EixoY <= Eixos1[C].EixoY)
-            { return 1; }
-
-            if (Eixos2[C].EixoY >= Eixos1[B].EixoY && Eixos2[C].EixoY <= Eixos1[C].EixoY && Eixos2[A].EixoX >= Eixos1[A].EixoX && Eixos2[A].EixoX <= Eixos1[B].EixoX)
-            { return 1; }
-
-            if (Eixos2[C].EixoX >= Eixos1[C].EixoX && Eixos2[C].EixoX <= Eixos1[D].EixoX && Eixos2[A].EixoY >= Eixos1[A].EixoY && Eixos2[A].EixoY <= Eixos1[C].EixoY)
-            { return 1; }
+                Eixos2[A].EixoX = objeto2.Location.X;
+                Eixos2[A].EixoY = objeto2.Location.Y;
+                Eixos2[B].EixoX = objeto2.Location.X + Tamanho2.Largura;
+                Eixos2[B].EixoY = objeto2.Location.Y;
+                Eixos2[C].EixoX = objeto2.Location.X;
+                Eixos2[C].EixoY = objeto2.Location.Y + Tamanho2.Altura;
+                Eixos2[D].EixoX = objeto2.Location.X + Tamanho2.Largura;
+                Eixos2[D].EixoY = objeto2.Location.Y + Tamanho2.Altura;
 
 
-            if (Eixos1[A].EixoY >= Eixos2[B].EixoY && Eixos1[A].EixoY <= Eixos2[C].EixoY && Eixos1[A].EixoX >= Eixos2[A].EixoX && Eixos1[A].EixoX <= Eixos2[B].EixoX)
-            { return 1; }
+                //Colisão AC com BD//
+                if (Eixos2[A].EixoY >= Eixos1[B].EixoY && Eixos2[A].EixoY <= Eixos1[C].EixoY && Eixos2[A].EixoX >= Eixos1[A].EixoX && Eixos2[A].EixoX <= Eixos1[B].EixoX)
+                { return 1; }
 
-            if (Eixos1[A].EixoX >= Eixos2[C].EixoX && Eixos1[A].EixoX <= Eixos2[D].EixoX && Eixos1[A].EixoY >= Eixos2[A].EixoY && Eixos1[A].EixoY <= Eixos2[C].EixoY)
-            { return 1; }
+                if (Eixos2[A].EixoX >= Eixos1[C].EixoX && Eixos2[A].EixoX <= Eixos1[D].EixoX && Eixos2[A].EixoY >= Eixos1[A].EixoY && Eixos2[A].EixoY <= Eixos1[C].EixoY)
+                { return 1; }
 
-            if (Eixos1[C].EixoY >= Eixos2[B].EixoY && Eixos1[C].EixoY <= Eixos2[C].EixoY && Eixos1[A].EixoX >= Eixos2[A].EixoX && Eixos1[A].EixoX <= Eixos2[B].EixoX)
-            { return 1; }
+                if (Eixos2[C].EixoY >= Eixos1[B].EixoY && Eixos2[C].EixoY <= Eixos1[C].EixoY && Eixos2[A].EixoX >= Eixos1[A].EixoX && Eixos2[A].EixoX <= Eixos1[B].EixoX)
+                { return 1; }
 
-            if (Eixos1[C].EixoX >= Eixos2[C].EixoX && Eixos1[C].EixoX <= Eixos2[D].EixoX && Eixos1[A].EixoY >= Eixos2[A].EixoY && Eixos1[A].EixoY <= Eixos2[C].EixoY)
-            { return 1; }
+                if (Eixos2[C].EixoX >= Eixos1[C].EixoX && Eixos2[C].EixoX <= Eixos1[D].EixoX && Eixos2[A].EixoY >= Eixos1[A].EixoY && Eixos2[A].EixoY <= Eixos1[C].EixoY)
+                { return 1; }
 
-            if (Eixos2[B].EixoX >= Eixos1[A].EixoX && Eixos2[B].EixoX <= Eixos1[B].EixoX && Eixos2[B].EixoY >= Eixos1[A].EixoY && Eixos2[B].EixoY <= Eixos1[C].EixoY)
-            { return 1; }
 
-            if (Eixos2[D].EixoX >= Eixos1[A].EixoX && Eixos2[D].EixoX <= Eixos1[B].EixoX && Eixos2[D].EixoY >= Eixos1[A].EixoY && Eixos2[D].EixoY <= Eixos1[C].EixoY)
-            { return 1; }
+                if (Eixos1[A].EixoY >= Eixos2[B].EixoY && Eixos1[A].EixoY <= Eixos2[C].EixoY && Eixos1[A].EixoX >= Eixos2[A].EixoX && Eixos1[A].EixoX <= Eixos2[B].EixoX)
+                { return 1; }
 
+                if (Eixos1[A].EixoX >= Eixos2[C].EixoX && Eixos1[A].EixoX <= Eixos2[D].EixoX && Eixos1[A].EixoY >= Eixos2[A].EixoY && Eixos1[A].EixoY <= Eixos2[C].EixoY)
+                { return 1; }
+
+                if (Eixos1[C].EixoY >= Eixos2[B].EixoY && Eixos1[C].EixoY <= Eixos2[C].EixoY && Eixos1[A].EixoX >= Eixos2[A].EixoX && Eixos1[A].EixoX <= Eixos2[B].EixoX)
+                { return 1; }
+
+                if (Eixos1[C].EixoX >= Eixos2[C].EixoX && Eixos1[C].EixoX <= Eixos2[D].EixoX && Eixos1[A].EixoY >= Eixos2[A].EixoY && Eixos1[A].EixoY <= Eixos2[C].EixoY)
+                { return 1; }
+
+                if (Eixos2[B].EixoX >= Eixos1[A].EixoX && Eixos2[B].EixoX <= Eixos1[B].EixoX && Eixos2[B].EixoY >= Eixos1[A].EixoY && Eixos2[B].EixoY <= Eixos1[C].EixoY)
+                { return 1; }
+
+                if (Eixos2[D].EixoX >= Eixos1[A].EixoX && Eixos2[D].EixoX <= Eixos1[B].EixoX && Eixos2[D].EixoY >= Eixos1[A].EixoY && Eixos2[D].EixoY <= Eixos1[C].EixoY)
+                { return 1; }
+
+                if (Eixos1[B].EixoX >= Eixos2[A].EixoX && Eixos1[B].EixoX <= Eixos2[B].EixoX && Eixos1[B].EixoY >= Eixos2[A].EixoY && Eixos1[B].EixoY <= Eixos2[C].EixoY)
+                { return 1; }
+
+                if (Eixos1[D].EixoX >= Eixos2[A].EixoX && Eixos1[D].EixoX <= Eixos2[B].EixoX && Eixos1[D].EixoY >= Eixos2[A].EixoY && Eixos1[D].EixoY <= Eixos2[C].EixoY)
+                { return 1; }
+            }
             return 0;
         }
         public int Range()
@@ -157,9 +166,9 @@ namespace PacFood
 
             for (int x = 0; x < Objetos.Length; x++)
             {
-                if (Objetos[x].Colisao()==1)
+                if (Colisao()==1)
                 {
-                    Objetos[x].objeto1.Size = new Size(0, 0);
+                    Objetos[x].Size = new Size(0, 0);
                 }
             }
         }
@@ -174,28 +183,9 @@ namespace PacFood
 
                 for (int x = 0; x < Objetos.Length; x++)
                 {
-                    if (Objetos[x].Colisao() == 1 && Objetos[x].propriedade == 1)
+                    if (Colisao() == 1)
                     {
                         objeto1.Location = new Point(objeto1.Location.X + velocidade, objeto1.Location.Y + velocidade);
-                    }
-
-                    if (Objetos[x].Colisao() == 1 && Objetos[x].propriedade == 2 && Player.forca > 1)
-                    {
-                        Player.forca -= (float)0.1;
-                        Player.atualizar();
-                        Objetos[x].objeto1.Location = new Point(Objetos[x].objeto1.Location.X - velocidade, Objetos[x].objeto1.Location.Y - velocidade);
-                    }
-
-                    if (Objetos[x].Colisao() == 1 && Objetos[x].propriedade == 2 && Player.forca <= 1)
-                    {
-                        objeto1.Location = new Point(objeto1.Location.X + velocidade, objeto1.Location.Y + velocidade);
-                    }
-
-                    if (Objetos[x].Colisao() == 1 && Objetos[x].propriedade == 3)
-                    {
-                        Objetos[x].objeto1.Location = new Point(random.Next(10, 1000), random.Next(10, 489));
-                        Player.pontos += 5;
-                        Player.atualizar();
                     }
                 }
             }
@@ -206,29 +196,11 @@ namespace PacFood
 
                 for (int x = 0; x < Objetos.Length; x++)
                 {
-                    if (Objetos[x].Colisao() == 1 && Objetos[x].propriedade == 1)
+                    if (Colisao() == 1)
                     {
                         objeto1.Location = new Point(objeto1.Location.X - velocidade, objeto1.Location.Y + velocidade);
                     }
 
-                    if (Objetos[x].Colisao() == 1 && Objetos[x].propriedade == 2 && Player.forca > 1)
-                    {
-                        Player.forca -= (float)0.1;
-                        Player.atualizar();
-                        Objetos[x].objeto1.Location = new Point(Objetos[x].objeto1.Location.X + velocidade, Objetos[x].objeto1.Location.Y - velocidade);
-                    }
-
-                    if (Objetos[x].Colisao() == 1 && Objetos[x].propriedade == 2 && Player.forca <= 1)
-                    {
-                        objeto1.Location = new Point(objeto1.Location.X - velocidade, objeto1.Location.Y + velocidade);
-                    }
-
-                    if (Objetos[x].Colisao() == 1 && Objetos[x].propriedade == 3)
-                    {
-                        Objetos[x].objeto1.Location = new Point(random.Next(10, 1000), random.Next(10, 489));
-                        Player.pontos += 5;
-                        Player.atualizar();
-                    }
                 }
             }
 
@@ -238,29 +210,11 @@ namespace PacFood
 
                 for (int x = 0; x < Objetos.Length; x++)
                 {
-                    if (Objetos[x].Colisao() == 1 && Objetos[x].propriedade == 1)
+                    if (Colisao() == 1)
                     {
                         objeto1.Location = new Point(objeto1.Location.X + velocidade, objeto1.Location.Y - velocidade);
                     }
 
-                    if (Objetos[x].Colisao() == 1 && Objetos[x].propriedade == 2 && Player.forca > 1)
-                    {
-                        Player.forca -= (float)0.1;
-                        Player.atualizar();
-                        Objetos[x].objeto1.Location = new Point(Objetos[x].objeto1.Location.X - velocidade, Objetos[x].objeto1.Location.Y + velocidade);
-                    }
-
-                    if (Objetos[x].Colisao() == 1 && Objetos[x].propriedade == 2 && Player.forca <= 1)
-                    {
-                        objeto1.Location = new Point(objeto1.Location.X + velocidade, objeto1.Location.Y - velocidade);
-                    }
-
-                    if (Objetos[x].Colisao() == 1 && Objetos[x].propriedade == 3)
-                    {
-                        Objetos[x].objeto1.Location = new Point(random.Next(10, 1000), random.Next(10, 489));
-                        Player.pontos += 5;
-                        Player.atualizar();
-                    }
                 }
             }
 
@@ -270,29 +224,11 @@ namespace PacFood
 
                 for (int x = 0; x < Objetos.Length; x++)
                 {
-                    if (Objetos[x].Colisao() == 1 && Objetos[x].propriedade == 1)
+                    if (Colisao() == 1 )
                     {
                         objeto1.Location = new Point(objeto1.Location.X - velocidade, objeto1.Location.Y - velocidade);
                     }
 
-                    if (Objetos[x].Colisao() == 1 && Objetos[x].propriedade == 2 && Player.forca > 1)
-                    {
-                        Player.forca -= (float)0.1;
-                        Player.atualizar();
-                        Objetos[x].objeto1.Location = new Point(Objetos[x].objeto1.Location.X + velocidade, Objetos[x].objeto1.Location.Y + velocidade);
-                    }
-
-                    if (Objetos[x].Colisao() == 1 && Objetos[x].propriedade == 2 && Player.forca <= 1)
-                    {
-                        objeto1.Location = new Point(objeto1.Location.X - velocidade, objeto1.Location.Y - velocidade);
-                    }
-
-                    if (Objetos[x].Colisao() == 1 && Objetos[x].propriedade == 3)
-                    { 
-                        Objetos[x].objeto1.Location = new Point(random.Next(10, 1000), random.Next(10, 489));
-                        Player.pontos += 5;
-                        Player.atualizar();
-                    }
                 }
             }
 
@@ -302,28 +238,9 @@ namespace PacFood
 
                 for (int x = 0; x < Objetos.Length; x++)
                 {
-                    if (Objetos[x].Colisao() == 1 && Objetos[x].propriedade == 1)
+                    if (Colisao() == 1)
                     {
                         objeto1.Location = new Point(objeto1.Location.X, objeto1.Location.Y + velocidade);
-                    }
-
-                    if (Objetos[x].Colisao() == 1 && Objetos[x].propriedade == 2 && Player.forca > 1)
-                    {
-                        Player.forca -= (float)0.1;
-                        Player.atualizar();
-                        Objetos[x].objeto1.Location = new Point(Objetos[x].objeto1.Location.X, Objetos[x].objeto1.Location.Y - velocidade);
-                    }
-
-                    if (Objetos[x].Colisao() == 1 && Objetos[x].propriedade == 2 && Player.forca <= 1)
-                    {
-                        objeto1.Location = new Point(objeto1.Location.X, objeto1.Location.Y + velocidade);
-                    }
-
-                    if (Objetos[x].Colisao() == 1 && Objetos[x].propriedade == 3)
-                    {
-                        Objetos[x].objeto1.Location = new Point(random.Next(10,1000), random.Next(10, 489));
-                        Player.pontos += 5;
-                        Player.atualizar();
                     }
                 }
             }
@@ -332,28 +249,9 @@ namespace PacFood
                     objeto1.Location = new Point(objeto1.Location.X, objeto1.Location.Y + velocidade);
                     for (int x = 0; x <Objetos.Length; x++)
                     {
-                        if (Objetos[x].Colisao() == 1 && Objetos[x].propriedade == 1)
+                        if(Colisao() == 1)
                         {
                             objeto1.Location = new Point(objeto1.Location.X, objeto1.Location.Y - velocidade);
-                        }
-
-                        if (Objetos[x].Colisao() == 1 && Objetos[x].propriedade == 2 && Player.forca > 1)
-                        {
-                            Player.forca -= (float)0.1;
-                            Player.atualizar();
-                        Objetos[x].objeto1.Location = new Point(Objetos[x].objeto1.Location.X, Objetos[x].objeto1.Location.Y + velocidade);
-                    }
-
-                    if (Objetos[x].Colisao() == 1 && Objetos[x].propriedade == 2 && Player.forca <= 1)
-                    {
-                        objeto1.Location = new Point(objeto1.Location.X, objeto1.Location.Y - velocidade);
-                    }
-
-                    if (Objetos[x].Colisao() == 1 && Objetos[x].propriedade == 3)
-                        {
-                            Objetos[x].objeto1.Location = new Point(random.Next(10,1000), random.Next(10, 489)); 
-                            Player.pontos += 5;
-                            Player.atualizar();
                         }
                     }
                 }
@@ -364,28 +262,9 @@ namespace PacFood
 
                     for (int x = 0; x < Objetos.Length; x++)
                     {
-                        if (Objetos[x].Colisao() == 1 && Objetos[x].propriedade == 1)
+                        if(Colisao() == 1)
                         {
                             objeto1.Location = new Point(objeto1.Location.X + velocidade, objeto1.Location.Y);
-                        }
-
-                        if (Objetos[x].Colisao() == 1 && Objetos[x].propriedade == 2 && Player.forca > 1)
-                        {
-                            Player.forca -= (float)0.1;
-                            Player.atualizar();
-                            Objetos[x].objeto1.Location = new Point(Objetos[x].objeto1.Location.X - velocidade, Objetos[x].objeto1.Location.Y);
-                        }
-
-                    if (Objetos[x].Colisao() == 1 && Objetos[x].propriedade == 2 && Player.forca <= 1)
-                    {
-                        objeto1.Location = new Point(objeto1.Location.X + velocidade, objeto1.Location.Y);
-                    }
-
-                    if (Objetos[x].Colisao() == 1 && Objetos[x].propriedade == 3)
-                        {
-                            Objetos[x].objeto1.Location = new Point(random.Next(10,1000), random.Next(10, 489));
-                            Player.pontos += 5;
-                            Player.atualizar();
                         }
                     }
                 }
@@ -395,29 +274,9 @@ namespace PacFood
                     objeto1.Location = new Point(objeto1.Location.X + velocidade, objeto1.Location.Y);
                     for (int x = 0; x < Objetos.Length; x++)
                     {
-                        if (Objetos[x].Colisao() == 1 && Objetos[x].propriedade == 1)
+                        if (Colisao() == 1)
                         {
                             objeto1.Location = new Point(objeto1.Location.X - velocidade, objeto1.Location.Y);
-                        }
-
-                        if(Objetos[x].Colisao() == 1 && Objetos[x].propriedade == 2 && Player.forca > 1)
-                        {
-                            Player.forca -= (float)0.1;
-                            Player.atualizar();
-                            Objetos[x].objeto1.Location = new Point(Objetos[x].objeto1.Location.X + velocidade, Objetos[x].objeto1.Location.Y);
-                        }
-
-                        if (Objetos[x].Colisao() == 1 && Objetos[x].propriedade == 2 && Player.forca <=1)
-                        {
-                        objeto1.Location = new Point(objeto1.Location.X - velocidade, objeto1.Location.Y);
-                    }
-
-
-                    if (Objetos[x].Colisao() == 1 && Objetos[x].propriedade == 3)
-                        {
-                            Objetos[x].objeto1.Location = new Point(random.Next(10, 1000), random.Next(10, 489));
-                            Player.pontos += 5;
-                            Player.atualizar();
                         }
                     }
                 }
