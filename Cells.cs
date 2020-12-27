@@ -11,26 +11,19 @@ using System.Runtime;
 
 namespace PacFood
 {
-    class Inimigo
+    class Cells
     {
         fisica scriptInimigo;
-        Control enemy;
+        Control celula;
         int Distanticia;
         int velociade=2;
         Form1 form;
 
-        public Inimigo(Control eny,  fisica script, Form1 form)
+        public Cells(Control eny,  fisica script, Form1 form)
         {
-            this.enemy = eny;
-            //this.Distanticia = Dist;
+            this.celula = eny;
             this.scriptInimigo = script;
             this.form = form;
-        }
-
-        public async void mudarCor()
-        {
-            await Task.Delay(5000);
-            enemy.BackColor = Color.Red;
         }
        
 
@@ -45,33 +38,33 @@ namespace PacFood
             {
                 while (x < random.Next(50, 100) && !colidiu)
                 {
-                    enemy.Location = new Point(enemy.Location.X + velociade, enemy.Location.Y);
+                    celula.Location = new Point(celula.Location.X + velociade, celula.Location.Y);
 
                     if (scriptInimigo.Colisao() == 1)
                     {
-                        enemy.Location = new Point(enemy.Location.X - velociade, enemy.Location.Y);
+                        celula.Location = new Point(celula.Location.X - velociade, celula.Location.Y);
                         if (scriptInimigo.objeto2.Tag == "comida")
                         {
                             scriptInimigo.objeto2.Location = new Point(0, 0);
-                            enemy.BackColor = Color.Red;
+                            celula.BackColor = Color.Red;
                         }
 
-                        if (scriptInimigo.objeto2.Tag == "celula" && enemy.BackColor==Color.Red && enemy.Text=="F" && scriptInimigo.objeto2.Text=="M")
+                        if (scriptInimigo.objeto2.Tag == "celula" && celula.BackColor==Color.Red && celula.Text=="F" && scriptInimigo.objeto2.Text=="M")
                         {
-                            form.novaCelula(enemy.Location.X, enemy.Location.Y);
-                            enemy.BackColor = Color.Orange;
+                            form.novaCelula(celula.Location.X, celula.Location.Y);
+                            celula.BackColor = Color.Orange;
                         }
                         colidiu = true;
                     }
 
-                    if (enemy.Location.X < 30 || enemy.Location.X > 1007)
+                    if (celula.Location.X < 30 || celula.Location.X > 1007)
                     {
-                        enemy.Location = new Point(enemy.Location.X - velociade, enemy.Location.Y);
+                        celula.Location = new Point(celula.Location.X - velociade, celula.Location.Y);
                         colidiu = true;
                     }
-                    if (enemy.Location.Y < 30 || enemy.Location.Y > 450)
+                    if (celula.Location.Y < 30 || celula.Location.Y > 450)
                     {
-                        enemy.Location = new Point(enemy.Location.X - velociade, enemy.Location.Y );
+                        celula.Location = new Point(celula.Location.X - velociade, celula.Location.Y );
                         colidiu = true;
                     }
                     await Task.Delay(25);
@@ -82,34 +75,34 @@ namespace PacFood
             {
                 while (x < random.Next(50, 100) && !colidiu)
                 {
-                    enemy.Location = new Point(enemy.Location.X - velociade, enemy.Location.Y);
+                    celula.Location = new Point(celula.Location.X - velociade, celula.Location.Y);
 
 
                     if (scriptInimigo.Colisao() == 1)
                     {   
-                        enemy.Location = new Point(enemy.Location.X + velociade, enemy.Location.Y);
+                        celula.Location = new Point(celula.Location.X + velociade, celula.Location.Y);
                         if (scriptInimigo.objeto2.Tag == "comida")
                         {
-                            enemy.BackColor = Color.Red;
+                            celula.BackColor = Color.Red;
                             scriptInimigo.objeto2.Location = new Point(0, 0);
                         }
 
-                        if (scriptInimigo.objeto2.Tag == "celula" && enemy.BackColor == Color.Red && enemy.Text == "F" && scriptInimigo.objeto2.Text == "M")
+                        if (scriptInimigo.objeto2.Tag == "celula" && celula.BackColor == Color.Red && celula.Text == "F" && scriptInimigo.objeto2.Text == "M")
                         {
-                            form.novaCelula(enemy.Location.X, enemy.Location.Y);
-                            enemy.BackColor = Color.Orange;
+                            form.novaCelula(celula.Location.X, celula.Location.Y);
+                            celula.BackColor = Color.Orange;
                         }
                         colidiu = true;
                     }
 
-                    if (enemy.Location.X < 30 || enemy.Location.X > 1007)
+                    if (celula.Location.X < 30 || celula.Location.X > 1007)
                     {
-                        enemy.Location = new Point(enemy.Location.X + velociade, enemy.Location.Y);
+                        celula.Location = new Point(celula.Location.X + velociade, celula.Location.Y);
                         colidiu = true;
                     }
-                    if (enemy.Location.Y < 30 || enemy.Location.Y > 450)
+                    if (celula.Location.Y < 30 || celula.Location.Y > 450)
                     {
-                        enemy.Location = new Point(enemy.Location.X + velociade, enemy.Location.Y);
+                        celula.Location = new Point(celula.Location.X + velociade, celula.Location.Y);
                         colidiu = true;
                     }
                     await Task.Delay(25);
@@ -129,31 +122,31 @@ namespace PacFood
             {
                 while (x < random.Next(1, 100) && !colidiu)
                 {
-                    enemy.Location = new Point(enemy.Location.X, enemy.Location.Y + velociade);
+                    celula.Location = new Point(celula.Location.X, celula.Location.Y + velociade);
                     if (scriptInimigo.Colisao() == 1)
                     {
-                        enemy.Location = new Point(enemy.Location.X, enemy.Location.Y - velociade);
+                        celula.Location = new Point(celula.Location.X, celula.Location.Y - velociade);
                         if (scriptInimigo.objeto2.Tag == "comida")
                         {
-                            enemy.BackColor = Color.Red;
+                            celula.BackColor = Color.Red;
                             scriptInimigo.objeto2.Location = new Point(0, 0);
                         }
-                        if (scriptInimigo.objeto2.Tag == "celula" && enemy.BackColor == Color.Red && enemy.Text == "F" && scriptInimigo.objeto2.Text == "M")
+                        if (scriptInimigo.objeto2.Tag == "celula" && celula.BackColor == Color.Red && celula.Text == "F" && scriptInimigo.objeto2.Text == "M")
                         {
-                            form.novaCelula(enemy.Location.X, enemy.Location.Y);
-                            enemy.BackColor = Color.Orange;
+                            form.novaCelula(celula.Location.X, celula.Location.Y);
+                            celula.BackColor = Color.Orange;
                         }
                         colidiu = true;
                     }
 
-                    if (enemy.Location.X < 30 || enemy.Location.X > 1007)
+                    if (celula.Location.X < 30 || celula.Location.X > 1007)
                     {
-                        enemy.Location = new Point(enemy.Location.X , enemy.Location.Y - velociade);
+                        celula.Location = new Point(celula.Location.X , celula.Location.Y - velociade);
                         colidiu = true;
                     }
-                    if (enemy.Location.Y < 30 || enemy.Location.Y > 450)
+                    if (celula.Location.Y < 30 || celula.Location.Y > 450)
                     {
-                        enemy.Location = new Point(enemy.Location.X, enemy.Location.Y - velociade);
+                        celula.Location = new Point(celula.Location.X, celula.Location.Y - velociade);
                         colidiu = true;
                     }
                     await Task.Delay(25);
@@ -164,31 +157,31 @@ namespace PacFood
             {
                 while (x < random.Next(1, 100) && !colidiu)
                 {
-                    enemy.Location = new Point(enemy.Location.X , enemy.Location.Y - velociade);
+                    celula.Location = new Point(celula.Location.X , celula.Location.Y - velociade);
                     if (scriptInimigo.Colisao() == 1)
                     {
-                        enemy.Location = new Point(enemy.Location.X , enemy.Location.Y + velociade);
+                        celula.Location = new Point(celula.Location.X , celula.Location.Y + velociade);
                         if(scriptInimigo.objeto2.Tag == "comida")
                         {
-                            enemy.BackColor = Color.Red;
+                            celula.BackColor = Color.Red;
                             scriptInimigo.objeto2.Location = new Point(0, 0);
                         }
-                        if (scriptInimigo.objeto2.Tag == "celula" && enemy.BackColor == Color.Red && enemy.Text == "F" && scriptInimigo.objeto2.Text == "M")
+                        if (scriptInimigo.objeto2.Tag == "celula" && celula.BackColor == Color.Red && celula.Text == "F" && scriptInimigo.objeto2.Text == "M")
                         {
-                            form.novaCelula(enemy.Location.X, enemy.Location.Y);
-                            enemy.BackColor = Color.Orange;
+                            form.novaCelula(celula.Location.X, celula.Location.Y);
+                            celula.BackColor = Color.Orange;
                         }
                         colidiu = true;
                     }
 
-                    if (enemy.Location.X < 30 || enemy.Location.X > 1007)
+                    if (celula.Location.X < 30 || celula.Location.X > 1007)
                     {
-                        enemy.Location = new Point(enemy.Location.X , enemy.Location.Y + velociade);
+                        celula.Location = new Point(celula.Location.X , celula.Location.Y + velociade);
                         colidiu = true;
                     }
-                    if (enemy.Location.Y < 30 || enemy.Location.Y > 450)
+                    if (celula.Location.Y < 30 || celula.Location.Y > 450)
                     {
-                        enemy.Location = new Point(enemy.Location.X, enemy.Location.Y + velociade);
+                        celula.Location = new Point(celula.Location.X, celula.Location.Y + velociade);
                         colidiu = true;
                     }
                     await Task.Delay(25);

@@ -27,6 +27,8 @@ namespace PacFood
         public Player PersonagemP;//Controle do Personagem Principal
 
         int x = 2;
+        int macho = 1;
+        int femea = 1;
         public Form1()
         {
             InitializeComponent();
@@ -63,7 +65,7 @@ namespace PacFood
             celulasFisica[0] = Personagem;
             celulasFisica[1] = Personage2;
 
-            PersonagemP = new Player(Jogador, pontoLabel, vidaLabel, frcTxt);
+            PersonagemP = new Player(Jogador, machoLabel, vidaLabel, femeaLabel);
 
             Personagem.colidir(Objetos[0].getDados());
             Personage2.colidir(Objetos[1].getDados());
@@ -72,7 +74,7 @@ namespace PacFood
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            Inimigo atores = new Inimigo(personagem2, Personage2, this);
+            Cells atores = new Cells(personagem2, Personage2, this);
             atores.movimento();
         }
 
@@ -99,6 +101,16 @@ namespace PacFood
             Label newCell = new Label();
 
             newCell = Controle.gerarCelula();
+            if(newCell.Text == "M")
+            {
+                macho++;
+                machoLabel.Text = "Macho: " + macho; 
+            }
+            else
+            {
+                femea++;
+                femeaLabel.Text = "Femea: " + femea;
+            }
             newCell.Location = new Point(eX-26, eY-26);
             fisica newCellFisica = new fisica(newCell);
             celulasFisica[x] = newCellFisica;
@@ -126,7 +138,7 @@ namespace PacFood
 
             celulasFisica[x].colidir(Objetos[x].getDados());
             Controls.Add(newCell);
-            Inimigo cellPerson = new Inimigo(newCell, newCellFisica, this);
+            Cells cellPerson = new Cells(newCell, newCellFisica, this);
             cellPerson.movimento();
             for(int y=0;y<x;y++)
             {

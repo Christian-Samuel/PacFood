@@ -35,11 +35,11 @@
             this.parede2 = new System.Windows.Forms.Label();
             this.parede4 = new System.Windows.Forms.Label();
             this.vidaLabel = new System.Windows.Forms.Label();
-            this.pontoLabel = new System.Windows.Forms.Label();
+            this.machoLabel = new System.Windows.Forms.Label();
             this.Jogador = new System.Windows.Forms.Label();
             this.personagem2 = new System.Windows.Forms.Label();
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
-            this.frcTxt = new System.Windows.Forms.Label();
+            this.femeaLabel = new System.Windows.Forms.Label();
             this.status = new System.Windows.Forms.Panel();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.status.SuspendLayout();
@@ -89,14 +89,14 @@
             this.vidaLabel.Size = new System.Drawing.Size(0, 20);
             this.vidaLabel.TabIndex = 7;
             // 
-            // pontoLabel
+            // machoLabel
             // 
-            this.pontoLabel.AutoSize = true;
-            this.pontoLabel.Location = new System.Drawing.Point(3, 0);
-            this.pontoLabel.Name = "pontoLabel";
-            this.pontoLabel.Size = new System.Drawing.Size(70, 20);
-            this.pontoLabel.TabIndex = 6;
-            this.pontoLabel.Text = "Pontos:";
+            this.machoLabel.AutoSize = true;
+            this.machoLabel.Location = new System.Drawing.Point(3, 0);
+            this.machoLabel.Name = "machoLabel";
+            this.machoLabel.Size = new System.Drawing.Size(67, 20);
+            this.machoLabel.TabIndex = 6;
+            this.machoLabel.Text = "Macho:";
             // 
             // Jogador
             // 
@@ -125,19 +125,19 @@
             this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
             this.imageList1.Images.SetKeyName(0, "bloco1.jpg");
             // 
-            // frcTxt
+            // femeaLabel
             // 
-            this.frcTxt.AutoSize = true;
-            this.frcTxt.Location = new System.Drawing.Point(248, 0);
-            this.frcTxt.Name = "frcTxt";
-            this.frcTxt.Size = new System.Drawing.Size(50, 20);
-            this.frcTxt.TabIndex = 8;
-            this.frcTxt.Text = "Vida:";
+            this.femeaLabel.AutoSize = true;
+            this.femeaLabel.Location = new System.Drawing.Point(173, 0);
+            this.femeaLabel.Name = "femeaLabel";
+            this.femeaLabel.Size = new System.Drawing.Size(69, 20);
+            this.femeaLabel.TabIndex = 8;
+            this.femeaLabel.Text = "Femea:";
             // 
             // status
             // 
-            this.status.Controls.Add(this.frcTxt);
-            this.status.Controls.Add(this.pontoLabel);
+            this.status.Controls.Add(this.femeaLabel);
+            this.status.Controls.Add(this.machoLabel);
             this.status.Controls.Add(this.vidaLabel);
             this.status.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.status.Location = new System.Drawing.Point(356, -1);
@@ -180,11 +180,11 @@
         private System.Windows.Forms.Label parede2;
         private System.Windows.Forms.Label parede4;
         private System.Windows.Forms.Label vidaLabel;
-        private System.Windows.Forms.Label pontoLabel;
+        private System.Windows.Forms.Label machoLabel;
         private System.Windows.Forms.Label Jogador;
         private System.Windows.Forms.Label personagem2;
         private System.Windows.Forms.ImageList imageList1;
-        private System.Windows.Forms.Label frcTxt;
+        private System.Windows.Forms.Label femeaLabel;
         private System.Windows.Forms.Panel status;
         private System.Windows.Forms.Timer timer1;
     }

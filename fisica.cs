@@ -160,19 +160,6 @@ namespace PacFood
 
             return (int)Math.Sqrt(((Eixos2[C].EixoY - Eixos1[C].EixoY) * (Eixos2[C].EixoY - Eixos1[C].EixoY))+ ((Eixos2[B].EixoX - Eixos1[B].EixoX)* (Eixos2[B].EixoX - Eixos1[B].EixoX)));
         }
-   
-        public void destruir()
-        {
-
-            for (int x = 0; x < Objetos.Length; x++)
-            {
-                if (Colisao()==1)
-                {
-                    Objetos[x].Size = new Size(0, 0);
-                }
-            }
-        }
-
 
         public void mover(int e)
         {
