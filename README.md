@@ -5,17 +5,17 @@ nesse caso fazem o papel dos animais do jogo. Esses aniamis ao colidirem entre s
 animal, desde que ambos estejam alimentados e sejam de sexo opostos.A procriação torna os dois
 animais inferteis, e a fertilidade só retornara ao se alimentarem.
 
-###CENARIO
+### CENARIO
 Um cenario é gerado aleatóriamente(Controle.cs) e 2 animais são criados(Form1.cs).
 Esse cenario e fixo e permanece inalterado até que o jogo seja reiniciado. Os animais atraves de um
 sistema de colisão(Fisica.cs) detectam estes blocos e de forma aleatoria escolhem uma nova direção para seguir.
 
-###COMIDA
+### COMIDA
 A cada 5 segundos um novo alimento aparece em uma posição aleatoria no cenario, antes
 de ser instanciado no cenario, ele verifica se não está sobrendo algum objeto do jogo(Animal,Cenario ou Comida),
 caso positivo, sorteia uma nova posição até que a condição se torne falsa.
 
-###ANIAMIS
+### ANIAMIS
 A simulação começa com 2 animais, um controlado pelo computador e outro por você, e você precisa encostar no ani-
 mal controlado pelo computador para que seja gerado um novo animal. Esse processo precisa ser repetido até que
 algum animal do sexo 'M' seja criado, a partir deste momento a simulação continua por si só.
