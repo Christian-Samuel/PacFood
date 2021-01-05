@@ -8,7 +8,6 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-/*Cada objeto que se move e se colide precisa ter uma lista de objetos fisicos que faz referencia a propio*/
 
 namespace PacFood
 {
@@ -23,8 +22,6 @@ namespace PacFood
         fisica[] celulasFisica = new fisica[100];
         public fisica Personagem;//Instacia o Personagem principal
         public fisica Personage2;
-
-        public Player PersonagemP;//Controle do Personagem Principal
 
         int x = 2;
         int macho = 1;
@@ -64,8 +61,6 @@ namespace PacFood
 
             celulasFisica[0] = Personagem;
             celulasFisica[1] = Personage2;
-
-            PersonagemP = new Player(Jogador, machoLabel, vidaLabel, femeaLabel);
 
             Personagem.colidir(Objetos[0].getDados());
             Personage2.colidir(Objetos[1].getDados());

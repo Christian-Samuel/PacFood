@@ -101,7 +101,7 @@
             // Jogador
             // 
             this.Jogador.BackColor = System.Drawing.Color.Coral;
-            this.Jogador.Location = new System.Drawing.Point(44, 22);
+            this.Jogador.Location = new System.Drawing.Point(441, 225);
             this.Jogador.Name = "Jogador";
             this.Jogador.Size = new System.Drawing.Size(25, 25);
             this.Jogador.TabIndex = 6;
@@ -111,7 +111,7 @@
             // personagem2
             // 
             this.personagem2.BackColor = System.Drawing.Color.Red;
-            this.personagem2.Location = new System.Drawing.Point(629, 256);
+            this.personagem2.Location = new System.Drawing.Point(540, 225);
             this.personagem2.Name = "personagem2";
             this.personagem2.Size = new System.Drawing.Size(25, 25);
             this.personagem2.TabIndex = 19;
@@ -165,7 +165,6 @@
             this.Controls.Add(this.parede1);
             this.KeyPreview = true;
             this.Name = "Form1";
-            this.Text = "Form1";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Form1_KeyDown);
             this.status.ResumeLayout(false);
