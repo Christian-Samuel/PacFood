@@ -32,6 +32,7 @@ estabelecidas pelo script Cells.cs.
 -Alguns minutos depois:<br>
 ![telaprincipal](https://github.com/Christian-Samuel/PacFood/blob/master/IMG/FinalTela.PNG?raw=true)
 
+## O objetivo dessa aplicação não é ser bonita graficamente ou "jogável", e sim testar até onde pode-se chegar com o Visual Studio
 
 ## Como abrir?
 ### Projeto
