@@ -5,6 +5,9 @@ nesse caso fazem o papel dos animais do jogo. Esses aniamis ao colidirem entre s
 animal, desde que ambos estejam alimentados e sejam de sexo opostos.A procriação torna os dois
 animais inferteis, e a fertilidade só retornara ao se alimentarem.
 
+![telaprincipal](https://github.com/Christian-Samuel/PacFood/blob/master/IMG/20210215_194720.gif?raw=true)
+
+
 ### CENARIO
 Um cenario é gerado aleatóriamente(Controle.cs) e 2 animais são criados(Form1.cs).
 Esse cenario e fixo e permanece inalterado até que o jogo seja reiniciado. Os animais atraves de um
